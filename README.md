@@ -30,25 +30,20 @@ Throughout the project, VMware ESXi was used to host the virtual infrastructure,
 
 ---
 
-# Skills Demonstrated
+---
 
-- VMware ESXi Administration 
-- Virtual Machine Deployment
-- Virtual Network Configuration
-- VLAN Segmentation
-- pfSense Firewall Administration
-- Inter-VLAN Routing
-- Windows Server Administration
-- Active Directory Administration
-- Domain Join Administration
-- Group Policy Management
-- Workstation Security Hardening
-- Least-Privilege Network Access
-- Firewall Rule Validation
-- Network Troubleshooting
-- Linux Server Administration
-- Infrastructure Monitoring
-- Systems Administration Documentation
+# Lab Topology
+
+The lab was designed as a segmented virtual enterprise environment hosted within VMware ESXi.
+
+The environment separates **server, client, and management systems** across dedicated VLANs, with pfSense providing routing and firewall enforcement between network segments. Windows Server 2022 provides centralized Active Directory, DNS, and DHCP services, while the dedicated management network hosts infrastructure monitoring through Checkmk.
+
+<p align="center">
+Virtualized Enterprise Systems Administration Lab Topology<br/>
+<img src="https://i.imgur.com/d5lU7AK.png" width="1000" style="height:auto;" alt="Virtualized enterprise lab topology showing VMware ESXi, pfSense, Windows Server, client, management server, VLAN segmentation, and infrastructure monitoring."/>
+<br /><br />
+</p>
+
 ---
 
 # VMware ESXi Infrastructure Deployment
@@ -76,7 +71,7 @@ Separate ESXi networks were also created to support the segmented server, client
 
 <p align="center">
 VMware ESXi Infrastructure Overview<br/>
-<img src="IMAGE-LINK-HERE" width="950" style="height:auto;" alt="VMware ESXi host overview showing the FalsoTech virtual machines, networks, and datastore."/>
+<img src="https://i.imgur.com/6geZEum.png" width="950" style="height:auto;" alt="VMware ESXi host overview showing the FalsoTech virtual machines, networks, and datastore."/>
 <br /><br />
 </p>
 
@@ -110,7 +105,7 @@ The LAB-TRUNK port group was used to pass VLAN traffic to pfSense, allowing pfSe
 
 <p align="center">
 ESXi Virtual Network Segmentation<br/>
-<img src="IMAGE-LINK-HERE" width="950" style="height:auto;" alt="VMware ESXi port groups showing segmented server, client, and management VLANs."/>
+<img src="https://i.imgur.com/Ccla0hg.png" width="950" style="height:auto;" alt="VMware ESXi port groups showing segmented server, client, and management VLANs."/>
 <br /><br />
 </p>
 
@@ -142,7 +137,7 @@ The firewall was connected to both the external virtual network and the internal
 
 <p align="center">
 pfSense Firewall Deployment<br/>
-<img src="IMAGE-LINK-HERE" width="950" style="height:auto;" alt="pfSense Community Edition successfully deployed as a virtual firewall within VMware ESXi."/>
+<img src="https://i.imgur.com/WKz1tE0.png" width="950" style="height:auto;" alt="pfSense Community Edition successfully deployed as a virtual firewall within VMware ESXi."/>
 <br /><br />
 </p>
 
@@ -159,20 +154,6 @@ VLAN subinterfaces were configured on pfSense to provide a default gateway for e
 | Management | VLAN 30 | 10.10.30.1 |
 
 The VLAN interfaces allowed pfSense to route traffic between networks while applying firewall policies to determine which communication should be permitted.
-
-<p align="center">
-pfSense VLAN Interface Configuration<br/>
-<img src="IMAGE-LINK-HERE" width="950" style="height:auto;" alt="pfSense VLAN interfaces configured for server, client, and management networks."/>
-<br /><br />
-</p>
-
----
-
-## Validation
-
-The configured VLAN interfaces established pfSense as the default gateway and routing point between the segmented networks.
-
-This allowed later firewall policies to restrict unnecessary inter-VLAN communication while permitting required infrastructure services.
 
 ---
 
@@ -202,7 +183,7 @@ DHCP was configured on FALSO-DC01 to centrally distribute network configuration 
 
 <p align="center">
 Windows Server Infrastructure Services<br/>
-<img src="IMAGE-LINK-HERE" width="950" style="height:auto;" alt="FALSO-DC01 Server Manager showing Active Directory Domain Services, DHCP, DNS, and File and Storage Services."/>
+<img src="https://i.imgur.com/Xk6EcfB.png" width="950" style="height:auto;" alt="FALSO-DC01 Server Manager showing Active Directory Domain Services, DHCP, DNS, and File and Storage Services."/>
 <br /><br />
 </p>
 
@@ -253,7 +234,7 @@ The workstation received:
 
 <p align="center">
 VLAN 20 DHCP and Network Configuration<br/>
-<img src="IMAGE-LINK-HERE" width="950" style="height:auto;" alt="FALSO-CLIENT01 receiving VLAN 20 network configuration from the Windows Server DHCP service."/>
+<img src="https://i.imgur.com/sj7qZvY.png" width="950" style="height:auto;" alt="FALSO-CLIENT01 receiving VLAN 20 network configuration from the Windows Server DHCP service."/>
 <br /><br />
 </p>
 
@@ -285,7 +266,7 @@ The workstation was then placed within the **Workstations Organizational Unit**,
 
 <p align="center">
 Active Directory Client Integration<br/>
-<img src="IMAGE-LINK-HERE" width="950" style="height:auto;" alt="FALSO-CLIENT01 registered within the Workstations Organizational Unit in Active Directory."/>
+<img src="https://i.imgur.com/R5DttaX.png" width="950" style="height:auto;" alt="FALSO-CLIENT01 registered within the Workstations Organizational Unit in Active Directory."/>
 <br /><br />
 </p>
 
@@ -327,7 +308,7 @@ The `gpresult` utility was then used to verify that **GPO - Workstation Security
 
 <p align="center">
 Group Policy Deployment Verification<br/>
-<img src="IMAGE-LINK-HERE" width="950" style="height:auto;" alt="FALSO-CLIENT01 gpresult output confirming successful application of the workstation security baseline Group Policy."/>
+<img src="https://i.imgur.com/mkr10K5.png" width="950" style="height:auto;" alt="FALSO-CLIENT01 gpresult output confirming successful application of the workstation security baseline Group Policy."/>
 <br /><br />
 </p>
 
@@ -381,7 +362,7 @@ Testing confirmed that:
 
 <p align="center">
 VLAN 20 Firewall Policy and Segmentation Validation<br/>
-<img src="IMAGE-LINK-HERE" width="1000" style="height:auto;" alt="pfSense VLAN 20 firewall policy with successful DNS, Internet, and Group Policy validation alongside blocked server and management network access."/>
+<img src="https://i.imgur.com/CIUn6BS.png" width="1000" style="height:auto;" alt="pfSense VLAN 20 firewall policy with successful DNS, Internet, and Group Policy validation alongside blocked server and management network access."/>
 <br /><br />
 </p>
 
@@ -417,7 +398,7 @@ FALSO-DC01 was successfully added as a monitored host and confirmed as reachable
 
 <p align="center">
 Centralized Infrastructure Monitoring<br/>
-<img src="IMAGE-LINK-HERE" width="950" style="height:auto;" alt="Checkmk Community monitoring dashboard showing FALSO-DC01 in an UP state."/>
+<img src="https://i.imgur.com/mTFKPwa.png" width="950" style="height:auto;" alt="Checkmk Community monitoring dashboard showing FALSO-DC01 in an UP state."/>
 <br /><br />
 </p>
 
@@ -431,7 +412,7 @@ Historical graphs provided visibility into network response time and availabilit
 
 <p align="center">
 Infrastructure Monitoring Metrics<br/>
-<img src="IMAGE-LINK-HERE" width="950" style="height:auto;" alt="Checkmk monitoring graphs displaying FALSO-DC01 round-trip latency and packet-loss metrics."/>
+<img src="https://i.imgur.com/kdVq4dr.png" width="950" style="height:auto;" alt="Checkmk monitoring graphs displaying FALSO-DC01 round-trip latency and packet-loss metrics."/>
 <br /><br />
 </p>
 
